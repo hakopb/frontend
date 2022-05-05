@@ -19,6 +19,10 @@ import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 
 const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -70,22 +74,18 @@ export default function Booking() {
         <CssBaseline />
         <Box
           sx={{
-            margin: 2,
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'start',
           }}
         >
-
           <Typography component="h1" variant="h5" sx={{ marginBottom: 2 }}>
             Book shipping
           </Typography>
           <Typography component="h1" variant="h6">
             Choose route
           </Typography>
-
-
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -121,7 +121,6 @@ export default function Booking() {
               </Grid>
               <Grid item xs={12}>
                 <Autocomplete
-                  margin="normal"
                   autoHighlight
                   disablePortal
                   id="combo-box-to"
@@ -151,7 +150,7 @@ export default function Booking() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <div>
+                <Box>
                   <Button variant="outlined" onClick={handleOpen}>
                     View map
                   </Button>
@@ -167,9 +166,8 @@ export default function Booking() {
                       <Button variant="text" onClick={handleClose}>Close</Button>
                     </Box>
                   </Modal>
-                </div>
+                </Box>
               </Grid>
-
               <Grid item xs={12}>
                 <TextField
                   required
@@ -186,7 +184,6 @@ export default function Booking() {
                   }}
                 />
               </Grid>
-
               <Grid item xs={6}>
                 <TextField
                   required
@@ -202,7 +199,6 @@ export default function Booking() {
                   }}
                 />
               </Grid>
-
               <Grid item xs={6}>
                 <TextField
                   required
@@ -218,7 +214,6 @@ export default function Booking() {
                   }}
                 />
               </Grid>
-
               <Grid item xs={6}>
                 <TextField
                   required
@@ -234,10 +229,8 @@ export default function Booking() {
                   }}
                 />
               </Grid>
-
               <Grid item xs={6}>
                 <Autocomplete
-                  margin="normal"
                   autoHighlight
                   disablePortal
                   id="combo-box-types"
