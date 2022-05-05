@@ -6,6 +6,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SearchField from '../components/SearchField';
 import { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import { Hidden } from '@mui/material';
+import { useTheme } from '@emotion/react';
 
 const theme = createTheme();
 
@@ -62,12 +65,21 @@ export default function Booking() {
   } else {
     return (
       <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="lg">
           <CssBaseline />
+          <Box sx={{display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
+          <div>
           <Typography component="h1" variant="h3">
             Book shipping
           </Typography>
           <SearchField cities={items} />
+          </div>
+          <Hidden only={['xs', 'sm', 'md']}>
+          <img style={{ Width: "100%", maxHeight: "90vh" }}
+          src="../../africamap.jpg" alt='Africa'>
+          </img>
+          </Hidden>
+          </Box>
           <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
       </ThemeProvider>
