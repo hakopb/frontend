@@ -11,18 +11,20 @@ import {
   Route,
 } from "react-router-dom";
 import ResponsiveDrawer from "./App";
-import BookShipping from "./pages/BookShipping";
-import Login from './pages/Login';
 import History from './pages/History';
 import Tracking from './pages/Tracking';
+import Booking from './pages/Booking';
+import SignIn from './pages/Signin';
+import SignUp from './pages/Signup';
 
 const rootElement = document.getElementById("root");
 render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<ResponsiveDrawer />}>
-      <Route path="login" element={<Login />} />
-      <Route path="book_shipping" element={<BookShipping />} />
+      <Route path="login" element={<SignIn />} />
+      <Route path="register" element={<SignUp />} />
+      <Route path="book_shipping" element={<Booking />} />
       <Route path="tracking" element={<History />} />
       <Route path="history" element={<Tracking />} />
       </Route>
