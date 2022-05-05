@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { Hidden } from '@mui/material';
 import { useTheme } from '@emotion/react';
+import { styled } from '@mui/material/styles';
 
 const theme = createTheme();
 
@@ -39,6 +40,12 @@ export default function Booking() {
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);
   const [type, setType] = useState(null);
+  // const CustomContainer = styled('div')(({ theme }) => ({
+  //   padding: theme.spacing(1),
+  //   [theme.breakpoints.down('lg')]: {
+  //     maxWidth: "xs",
+  //   }
+  // }));
 
   useEffect(() => {
     // Simple POST request with a JSON body using fetch
@@ -83,8 +90,7 @@ export default function Booking() {
           </div>
           <Hidden only={['xs', 'sm', 'md']}>
           <img style={{ Width: "100%", maxHeight: "90vh" }}
-          src="../../africamap.jpg" alt='Africa'>
-          </img>
+          src="https://i.ibb.co/2sJ93p1/africamap.jpg" alt='Africa'/>
           </Hidden>
           </Box>
           <Copyright sx={{ mt: 8, mb: 4 }} />
