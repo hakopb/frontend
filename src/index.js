@@ -21,7 +21,7 @@ import FetchTest from './pages/FetchTest';
 const rootElement = document.getElementById("root");
 
 render(
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
+  <BrowserRouter basename={"/frontend"}>
     <Routes>
       <Route path="/" element={<ResponsiveDrawer />}>
       <Route path="login" element={<SignIn />} />
