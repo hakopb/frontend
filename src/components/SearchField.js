@@ -51,15 +51,12 @@ export default function SearchField() {
   return (
     <Box
       sx={{
-        marginTop: 8,
+        marginTop: 2,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'start',
       }}
     >
-      <Typography component="h1" variant="h5" sx={{ marginBottom: 2 }}>
-        Book shipping
-      </Typography>
       <Typography component="h1" variant="h6">
         Choose route
       </Typography>

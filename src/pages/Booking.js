@@ -27,6 +27,9 @@ export default function Booking() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <Typography component="h1" variant="h3">
+          Book shipping
+        </Typography>
         <SearchField />
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
