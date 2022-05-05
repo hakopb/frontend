@@ -37,21 +37,21 @@ export default function Booking() {
       /*headers: { 'Content-Type': 'application/json' },*/
     };
     fetch('https://reqres.in/api/users?page=2', requestOptions) // TODO: Update fetch url
-    .then(res => res.json())
-    .then(
-      (result) => {
-        setIsLoaded(true);
-        setItems(result.data);
-        console.log(result.data);
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    )
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result.data);
+          console.log(result.data);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }, [])
 
   /* Render component */
