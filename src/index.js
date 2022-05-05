@@ -18,6 +18,7 @@ import SignIn from './pages/Signin';
 import SignUp from './pages/Signup';
 
 const rootElement = document.getElementById("root");
+
 render(
   <BrowserRouter>
     <Routes>

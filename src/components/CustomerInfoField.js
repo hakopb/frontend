@@ -9,7 +9,6 @@ import Chip from '@mui/material/Chip';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { toBeEmpty } from '@testing-library/jest-dom/dist/matchers';
 
 export default function CustomerInfoField(from, to, weight, time) {
   const handleSubmit = (event) => {
