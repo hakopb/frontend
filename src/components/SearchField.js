@@ -30,11 +30,11 @@ const modalStyle = {
   boxShadow: 24,
 };
 
-const cities = ['Congo', 'Tripoli'];
+/* const cities = ['Congo', 'Tripoli']; */
 
 const types = ['Standard', 'Weapons', 'Animals'];
 
-export default function SearchField() {
+export default function SearchField(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -67,7 +67,8 @@ export default function SearchField() {
               autoHighlight
               disablePortal
               id="combo-box-from"
-              options={cities}
+              options={props.cities}
+              getOptionLabel={(option) => option.first_name} // TODO: Update label
               autoFocus
               required
               renderInput={params => {
@@ -98,7 +99,8 @@ export default function SearchField() {
               autoHighlight
               disablePortal
               id="combo-box-to"
-              options={cities}
+              options={props.cities}
+              getOptionLabel={(option) => option.last_name} // TODO: Update label
               required
               renderInput={params => {
                 return (
