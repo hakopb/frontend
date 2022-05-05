@@ -72,6 +72,7 @@ export default function SearchField(props) {
               getOptionLabel={(option) => option.first_name} // TODO: Update label
               autoFocus
               required
+              onChange={e => props.setFromCity(e.target.value)}
               renderInput={params => {
                 return (
                   <TextField
@@ -103,6 +104,7 @@ export default function SearchField(props) {
               options={props.cities}
               getOptionLabel={(option) => option.last_name} // TODO: Update label
               required
+              onChange={e => props.setToCity(e.target.value)}
               renderInput={params => {
                 return (
                   <TextField
@@ -154,6 +156,7 @@ export default function SearchField(props) {
               label="Weight (kg)"
               name="weight"
               fullWidth
+              onChange={e => props.setWeight(e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -169,6 +172,7 @@ export default function SearchField(props) {
               id="length"
               label="Length (cm)"
               name="length"
+              onChange={e => props.setLength(e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -199,6 +203,7 @@ export default function SearchField(props) {
               id="width"
               label="Width (cm)"
               name="width"
+              onChange={e => props.setWidth(e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -214,6 +219,7 @@ export default function SearchField(props) {
               disablePortal
               id="combo-box-types"
               options={types}
+              onChange={e => props.setType(e.target.value)}
               renderInput={params => {
                 return (
                   <TextField

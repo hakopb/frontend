@@ -16,16 +16,18 @@ import Tracking from './pages/Tracking';
 import Booking from './pages/Booking';
 import SignIn from './pages/Signin';
 import SignUp from './pages/Signup';
+import FetchTest from './pages/FetchTest';
 
 const rootElement = document.getElementById("root");
 
 render(
-  <BrowserRouter>
+  <BrowserRouter basename={"/frontend"}>
     <Routes>
       <Route path="/" element={<ResponsiveDrawer />}>
       <Route path="login" element={<SignIn />} />
       <Route path="register" element={<SignUp />} />
       <Route path="book_shipping" element={<Booking />} />
+      <Route path="test" element={<FetchTest />} />
       <Route path="tracking" element={<Tracking />} />
       <Route path="history" element={<History />} />
       </Route>

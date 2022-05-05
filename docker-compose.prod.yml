@@ -3,7 +3,7 @@ version: "3.8"
 services:
   app:
     container_name: app-prod
-    image: app-prod
+    image: hakopb/oceanic_airlines:latest
     build:
       context: .
       target: production
