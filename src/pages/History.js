@@ -34,7 +34,7 @@ export default function History() {
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
   const ShipFromTo = "Tunis " + "⯈" + " Congo";
-  const Duration = "8" + " Hours"
+  const Duration = "8" + "h"
   const Price = "$" + "65"
 
   return (
