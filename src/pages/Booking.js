@@ -9,7 +9,6 @@ import { useState, useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import { Hidden } from '@mui/material';
 import { useTheme } from '@emotion/react';
-import { styled } from '@mui/material/styles';
 import ResultsField from '../components/ResultsField';
 
 const theme = createTheme();
@@ -51,12 +50,6 @@ export default function Booking() {
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);
   const [type, setType] = useState(null);
-  // const CustomContainer = styled('div')(({ theme }) => ({
-  //   padding: theme.spacing(1),
-  //   [theme.breakpoints.down('lg')]: {
-  //     maxWidth: "xs",
-  //   }
-  // }));
 
   /* Result handling */
   const [submit, setSubmit] = useState(null);
