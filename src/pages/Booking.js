@@ -8,7 +8,7 @@ import SearchField from '../components/SearchField';
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { Hidden } from '@mui/material';
-import { useTheme } from '@emotion/react';
+import ResultsField from '../components/ResultsField';
 
 const theme = createTheme();
 
@@ -39,6 +39,36 @@ export default function Booking() {
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);
   const [type, setType] = useState(null);
+
+  /* Result handling */
+  const [submit, setSubmit] = useState(false);
+  const [results, setResults] = useState([
+    {
+      time: "6 hours",
+      price: "$60",
+      route: "Tunis, Congo, ..."
+    }, 
+    {
+      time: "6 hours",
+      price: "$60",
+      route: "Tunis, Congo, ..."
+    }, 
+    {
+      time: "6 hours",
+      price: "$60",
+      route: "Tunis, Congo, ..."
+    }
+  ]);
+  const [filter, setFilter] = useState([null])
+
+  const renderResults = () => {
+    if(results) {
+      return <ResultsField results={results} />
+    } else {
+      return <></>
+    }
+  }
+
 
   useEffect(() => {
     // Simple POST request with a JSON body using fetch
@@ -79,7 +109,18 @@ export default function Booking() {
           <Typography component="h1" variant="h3">
             Book shipping
           </Typography>
-          <SearchField cities={cities} setFromCity={setFromCity} setToCity={setToCity} setWeight={setWeight} setLength={setLength} setWidth={setWidth} setHeight={setHeight} setType={setType} />
+          <SearchField 
+            cities={cities} 
+            setFromCity={setFromCity} 
+            setToCity={setToCity} 
+            setWeight={setWeight} 
+            setLength={setLength} 
+            setWidth={setWidth} 
+            setHeight={setHeight} 
+            setType={setType} 
+            setSubmit={setSubmit}
+            setResults={setResults}
+            setFilter={setFilter} />
           </div>
           <Hidden only={['xs', 'sm', 'md']}>
           <img style={{ Width: "100%", maxHeight: "90vh" }}
@@ -88,6 +129,7 @@ export default function Booking() {
           </Hidden>
           </Box>
           <Copyright sx={{ mt: 8, mb: 4 }} />
+          {renderResults()}
         </Container>
       </ThemeProvider>
     );
