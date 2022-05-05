@@ -9,18 +9,24 @@ import { FormLabel } from '@mui/material';
 import { RadioGroup } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import { Radio } from '@mui/material';
+import { useEffect, useState } from 'react';
 
-export default function ResultsField(results) {
+export default function ResultsField(props) {
+  const [radioValue, setRadioValue] = React.useState("best");
 
-  const listItems = results.map((result) =>
+  const listItems = props.results.map((result) =>
     <ListItem>
       <h4>{result.time}</h4>
       <ListItemText sx={{ paddingLeft: 2 }} primary={result.price} secondary={result.route} />
-      <Button variant="outlined">
+      <Button variant='contained'>
         Book
       </Button>
     </ListItem>
   );
+
+  useEffect(() => {
+    console.log(radioValue);
+  }, [radioValue])
 
   return (
     <Box>
@@ -30,16 +36,11 @@ export default function ResultsField(results) {
           row
           aria-labelledby="demo-row-radio-buttons-group-label"
           name="row-radio-buttons-group"
+          value={radioValue}
         >
-          <FormControlLabel value="female" control={<Radio />} label="Female" />
-          <FormControlLabel value="male" control={<Radio />} label="Male" />
-          <FormControlLabel value="other" control={<Radio />} label="Other" />
-          <FormControlLabel
-            value="disabled"
-            disabled
-            control={<Radio />}
-            label="other"
-          />
+          <FormControlLabel value="best" control={<Radio />} label="Best" onClick={() => setRadioValue("best")} />
+          <FormControlLabel value="fastest" control={<Radio />} label="Fastest" onClick={() => setRadioValue("fastest")} />
+          <FormControlLabel value="cheapest" control={<Radio />} label="Cheapest" onClick={() => setRadioValue("cheapest")} />
         </RadioGroup>
       </FormControl>
       <List sx={{ width: '100%' }}>
