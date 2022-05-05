@@ -27,9 +27,10 @@ render(
       <Route path="login" element={<SignIn />} />
       <Route path="register" element={<SignUp />} />
       <Route path="book_shipping" element={<Booking />} />
-      <Route path="tracking" element={<History />} />
-      <Route path="history" element={<Tracking />} />
+
       <Route path="test" element={<FetchTest />} />
+      <Route path="tracking" element={<Tracking />} />
+      <Route path="history" element={<History />} />
       </Route>
     </Routes>
   </BrowserRouter>,
