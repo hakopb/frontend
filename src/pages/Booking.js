@@ -28,7 +28,14 @@ export default function Booking() {
   /* Fetching */
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([])
+  const [cities, setCities] = useState([]);
+  const [fromCity, setFromCity] = useState(null);
+  const [toCity, setToCity] = useState(null);
+  const [weight, setWeight] = useState(null);
+  const [length, setLength] = useState(null);
+  const [width, setWidth] = useState(null);
+  const [height, setHeight] = useState(null);
+  const [type, setType] = useState(null);
 
   useEffect(() => {
     // Simple POST request with a JSON body using fetch
@@ -37,21 +44,21 @@ export default function Booking() {
       /*headers: { 'Content-Type': 'application/json' },*/
     };
     fetch('https://reqres.in/api/users?page=2', requestOptions) // TODO: Update fetch url
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result.data);
-          console.log(result.data);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+    .then(res => res.json())
+    .then(
+      (result) => {
+        setIsLoaded(true);
+        setCities(result.data);
+        console.log(result.data);
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    )
   }, [])
 
   /* Render component */
@@ -67,25 +74,10 @@ export default function Booking() {
           <Typography component="h1" variant="h3">
             Book shipping
           </Typography>
-          <SearchField cities={items} />
+          <SearchField cities={cities} setFromCity={setFromCity} setToCity={setToCity} setWeight={setWeight} setLength={setLength} setWidth={setWidth} setHeight={setHeight} setType={setType} />
           <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
       </ThemeProvider>
     );
   }
-
-  /*
-  return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Typography component="h1" variant="h3">
-          Book shipping
-        </Typography>
-        <SearchField />
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
-  );
-  */
 }
