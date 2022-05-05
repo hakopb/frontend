@@ -94,15 +94,14 @@ export default function Booking() {
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
       method: 'GET',
-      /*headers: { 'Content-Type': 'application/json' },*/
+      headers: { 'Content-Type': 'application/json' },
     };
     fetch('https://wa-oa-dk1.azurewebsites.net/api/city', requestOptions) // TODO: Update fetch url
     .then(res => res.json())
     .then(
       (result) => {
         setIsLoaded(true);
-        setCities(result.data);
-        console.log(result.data);
+        setCities(result);
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
