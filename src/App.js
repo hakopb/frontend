@@ -1,8 +1,11 @@
+/* Styling and fonts */
 import './App.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+
+/* Other imports */
 import { Outlet, Link } from "react-router-dom";
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -12,19 +15,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
@@ -37,8 +34,6 @@ function ResponsiveDrawer(props) {
   
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
-  let bookShippingLink = <Link to="/login" />;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -61,7 +56,7 @@ function ResponsiveDrawer(props) {
       <Toolbar />
       <Divider />
       <List>
-          <ListItem component={Link} to={"/book_shipping"}>
+          <ListItem component={Link} to={"/book_shipping"} onClick={ () => { handleClose() } }>
             <ListItemText>Book shipping</ListItemText>
           </ListItem>
           <ListItem component={Link} to={"/tracking"}>
