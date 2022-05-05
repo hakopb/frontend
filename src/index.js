@@ -16,6 +16,7 @@ import Tracking from './pages/Tracking';
 import Booking from './pages/Booking';
 import SignIn from './pages/Signin';
 import SignUp from './pages/Signup';
+import FetchTest from './pages/FetchTest';
 
 const rootElement = document.getElementById("root");
 
@@ -28,6 +29,7 @@ render(
       <Route path="book_shipping" element={<Booking />} />
       <Route path="tracking" element={<History />} />
       <Route path="history" element={<Tracking />} />
+      <Route path="test" element={<FetchTest />} />
       </Route>
     </Routes>
   </BrowserRouter>,
