@@ -13,6 +13,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import InputAdornment from '@mui/material/InputAdornment';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import { Hidden } from '@mui/material';
 
 const modalStyle = {
   position: 'absolute',
@@ -127,9 +128,11 @@ export default function SearchField(props) {
           </Grid>
           <Grid item xs={12}>
             <Box>
+              <Hidden only={['lg', 'xl']}>
               <Button variant="outlined" onClick={handleOpen}>
                 View map
               </Button>
+              </Hidden>
               <Modal
                 open={open}
                 onClose={handleClose}
