@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SearchField from '../components/SearchField';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import { Hidden } from '@mui/material';
 import ResultsField from '../components/ResultsField';
@@ -25,6 +25,16 @@ function Copyright(props) {
   );
 }
 
+export function useFirstRender() {
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    firstRender.current = false;
+  }, []);
+
+  return firstRender.current;
+}
+
 // TODO: Write functions for passing selections between components
 
 export default function Booking() {
@@ -41,25 +51,12 @@ export default function Booking() {
   const [type, setType] = useState(null);
 
   /* Result handling */
-  const [submit, setSubmit] = useState(false);
-  const [results, setResults] = useState([
-    {
-      time: "6 hours",
-      price: "$60",
-      route: "Tunis, Congo, ..."
-    }, 
-    {
-      time: "6 hours",
-      price: "$60",
-      route: "Tunis, Congo, ..."
-    }, 
-    {
-      time: "6 hours",
-      price: "$60",
-      route: "Tunis, Congo, ..."
-    }
-  ]);
-  const [filter, setFilter] = useState([null])
+  const [submit, setSubmit] = useState(null);
+  const [results, setResults] = useState(null);
+  const [filter, setFilter] = useState([null]);
+  const [skipCount, setSkipCount] = useState(true);
+
+  const firstRender = useFirstRender();
 
   const renderResults = () => {
     if(results) {
@@ -69,6 +66,29 @@ export default function Booking() {
     }
   }
 
+  useEffect(() => {
+    if (skipCount) setSkipCount(false);
+    if (!skipCount) {
+      // Simple POST request with a JSON body using fetch
+      const requestOptions = {
+        method: 'GET',
+        /*headers: { 'Content-Type': 'application/json' },*/
+      };
+      fetch('https://reqres.in/api/users?page=2', requestOptions) // TODO: Update fetch url
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setResults(result.data);
+          console.log(result.data);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+    }
+  }, [submit])
 
   useEffect(() => {
     // Simple POST request with a JSON body using fetch
@@ -76,7 +96,7 @@ export default function Booking() {
       method: 'GET',
       /*headers: { 'Content-Type': 'application/json' },*/
     };
-    fetch('https://reqres.in/api/users?page=2', requestOptions) // TODO: Update fetch url
+    fetch('https://wa-oa-dk1.azurewebsites.net/api/city', requestOptions) // TODO: Update fetch url
     .then(res => res.json())
     .then(
       (result) => {
