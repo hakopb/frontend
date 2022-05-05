@@ -1,14 +1,12 @@
 import logo from '../logo.svg';
 import '../App.css';
 
-function Login() {
+export default function BookShipping() {
   return (
     <div className="App">
       <p>
-        Login page
+        Book shipping
       </p>
     </div>
   );
 }
-
-export default Login;

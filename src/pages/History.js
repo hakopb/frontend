@@ -1,14 +1,12 @@
 import logo from '../logo.svg';
 import '../App.css';
 
-function Login() {
+export default function History() {
   return (
     <div className="App">
       <p>
-        Login page
+        History
       </p>
     </div>
   );
 }
-
-export default Login;

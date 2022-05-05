@@ -1,14 +1,12 @@
 import logo from '../logo.svg';
 import '../App.css';
 
-function Login() {
+export default function Tracking() {
   return (
     <div className="App">
       <p>
-        Login page
+        Tracking
       </p>
     </div>
   );
 }
-
-export default Login;
