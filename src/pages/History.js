@@ -43,7 +43,6 @@ export default function History() {
       (result) => {
         setIsLoaded(true);
         setParcels(result);
-        console.log(result[0].bookingLines[0].price);
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
@@ -74,9 +73,10 @@ export default function History() {
     if (parcels) {
       return (parcels.map((parcel) =>
       <ListItem>
-        <ListItemText align="right"
-          primary={parcel.bookingLines[0].price}
-        />
+        <ListItemText
+          align="right"
+          primary={parcel.bookingLines.price}
+          />
       </ListItem>)
       );
     } else {

@@ -54,7 +54,7 @@ export default function Booking() {
   const [type, setType] = useState(null);
 
   /* Result handling */
-  const [submit, setSubmit] = useState(null);
+  const [submit, setSubmit] = useState(1);
   const [results, setResults] = useState(null);
   const [filter, setFilter] = useState([null]);
   const [skipCount, setSkipCount] = useState(true);
@@ -68,36 +68,68 @@ export default function Booking() {
       return <></>
     }
   }
+  
+  useEffect(() => {
+    console.log(fromCity);
+  }, [fromCity])
+
+  useEffect(() => {
+    console.log(toCity);
+  }, [toCity])
 
   // TODO: Remove this and make it dynamic
   const jsonData = {
-    "source": "Dragebjerget",
-    "destination": "Kap Guardafui",
-    "height": 0,
-    "width": 0,
-    "length": 0,
-    "weight": 0,
-    "category": "weapon"
-  }
+    source: "Kapstaden",
+    destination: "Tanger",
+    height: 10,
+    width: 10,
+    length: 10,
+    weight: 10,
+    category: "Weapons"
+  };
+
+  const data = {
+    source: cities[5],
+    destination: cities[10],
+    height: 10,
+    width: 10,
+    length: 10,
+    weight: 10,
+    category: "Weapons"
+  };
 
   useEffect(() => {
     if (skipCount) setSkipCount(false);
     if (!skipCount) {
+      console.log(fromCity)
+      // console.log("ID: " + fromCity + ", city name: " + cities[1].cityName);
+      // console.log(toCity);
       // Simple POST request with a JSON body using fetch
       const requestOptions = {
         method: 'POST',
         headers: {
           'accept': 'text/plain',
           'Content-Type': 'application/json',
-          'body': JSON.stringify(jsonData) },
+        },
+        body: JSON.stringify(
+          {
+            source: fromCity,
+            destination: toCity,
+            height: height,
+            width: width,
+            length: length,
+            weight: weight,
+            category: "Weapons"
+          }
+        ),
       };
-      fetch('https://wa-oa-dk1.azurewebsites.net/api/Routes', requestOptions) // TODO: Update fetch url
+      fetch('https://wa-oa-dk1.azurewebsites.net/List', requestOptions) // TODO: Update fetch url
       .then(res => res.json())
       .then(
         (result) => {
           setIsLoaded2(true);
-          setResults(result.data);
-          console.log(result.data);
+          setResults(result);
+          console.log(result);
         },
         (error) => {
           setIsLoaded2(true);
@@ -108,7 +140,7 @@ export default function Booking() {
   }, [submit])
 
   useEffect(() => {
-    // Simple POST request with a JSON body using fetch
+    // Simple GET request with a JSON body using fetch
     const requestOptions = {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -147,6 +179,7 @@ export default function Booking() {
           </Typography>
           <SearchField 
             cities={cities} 
+            submit={submit}
             setFromCity={setFromCity} 
             setToCity={setToCity} 
             setWeight={setWeight} 

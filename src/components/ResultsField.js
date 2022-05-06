@@ -15,9 +15,9 @@ export default function ResultsField(props) {
   const [radioValue, setRadioValue] = React.useState("best");
 
   const listItems = props.results.map((result) =>
-    <ListItem>
-      <h4>{result.time}</h4>
-      <ListItemText sx={{ paddingLeft: 2 }} primary={result.price} secondary={result.route} />
+    <ListItem key={result.id}>
+      <h4>{result.time} hours</h4>
+      <ListItemText sx={{ paddingLeft: 2 }} primary={'$' + result.price} secondary={result.path} />
       <Button variant='contained'>
         Book
       </Button>
@@ -25,7 +25,7 @@ export default function ResultsField(props) {
   );
 
   useEffect(() => {
-    console.log(radioValue);
+    // console.log(radioValue);
   }, [radioValue])
 
   return (

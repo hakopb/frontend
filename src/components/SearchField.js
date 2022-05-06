@@ -42,11 +42,16 @@ export default function SearchField(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    props.setSubmit(props.submit + 1);
+    /*
+    const data = new FormData(event.currentTarget);*/
+    /*
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+    */
+
   }
 
   return (
@@ -72,7 +77,6 @@ export default function SearchField(props) {
               getOptionLabel={(option) => option.cityName} // TODO: Update label
               autoFocus
               required
-              onChange={e => props.setFromCity(e.target.value)}
               renderInput={params => {
                 return (
                   <TextField
@@ -80,6 +84,7 @@ export default function SearchField(props) {
                     label="From"
                     placeholder="Select city"
                     fullWidth
+                    onChange={e => props.setFromCity(e.target.value)}
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
@@ -104,7 +109,6 @@ export default function SearchField(props) {
               options={props.cities}
               getOptionLabel={(option) => option.cityName} // TODO: Update label
               required
-              onChange={e => props.setToCity(e.target.value)}
               renderInput={params => {
                 return (
                   <TextField
@@ -112,6 +116,7 @@ export default function SearchField(props) {
                     label="To"
                     placeholder="Select city"
                     fullWidth
+                    onChange={e => props.setToCity(e.target.value)}
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
