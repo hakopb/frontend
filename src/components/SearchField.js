@@ -131,9 +131,9 @@ export default function SearchField(props) {
           <Grid item xs={12}>
             <Box>
               <Hidden only={['lg', 'xl']}>
-              <Button variant="outlined" onClick={handleOpen}>
-                View map
-              </Button>
+                <Button variant="outlined" onClick={handleOpen}>
+                  View map
+                </Button>
               </Hidden>
               <Modal
                 open={open}
@@ -143,7 +143,7 @@ export default function SearchField(props) {
               >
                 <Box sx={modalStyle}>
                   <img style={{ Width: "100%", maxHeight: "90vh" }}
-                    src="../../africamap.jpg" alt="Afrika" />
+                    src="africamap.png" alt="Afrika" />
                   <Button variant="text" onClick={handleClose}>Close</Button>
                 </Box>
               </Modal>
@@ -255,7 +255,7 @@ export default function SearchField(props) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={() => props.setSubmit(true)}
-              >
+            >
               Search
             </Button>
           </Grid>
