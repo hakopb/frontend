@@ -115,10 +115,10 @@ export default function Booking() {
           {
             source: fromCity,
             destination: toCity,
-            height: height,
-            width: width,
-            length: length,
-            weight: weight,
+            height: 10,
+            width: 10,
+            length: 10,
+            weight: 10,
             category: "Weapons"
           }
         ),
