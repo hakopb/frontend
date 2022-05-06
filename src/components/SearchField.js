@@ -69,7 +69,7 @@ export default function SearchField(props) {
               disablePortal
               id="combo-box-from"
               options={props.cities}
-              getOptionLabel={(option) => option.first_name} // TODO: Update label
+              getOptionLabel={(option) => option.cityName} // TODO: Update label
               autoFocus
               required
               onChange={e => props.setFromCity(e.target.value)}
@@ -102,7 +102,7 @@ export default function SearchField(props) {
               disablePortal
               id="combo-box-to"
               options={props.cities}
-              getOptionLabel={(option) => option.last_name} // TODO: Update label
+              getOptionLabel={(option) => option.cityName} // TODO: Update label
               required
               onChange={e => props.setToCity(e.target.value)}
               renderInput={params => {

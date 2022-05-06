@@ -6,20 +6,19 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import TrackingDetailsField from './TrackingDetailsField';
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import { Link, matchRoutes, useLocation } from "react-router-dom";
 
-let selectedParcel = null;
-let detailedView = true; // change to false
-
+/*
 function handleParcelSelect(parcel) {
   selectedParcel = parcel;
   detailedView = true;
 }
+*/
 
 export default function TrackingField(parcels) {
   const listItems = parcels.map((parcel) =>
-    <div onClick={() => handleParcelSelect(parcel)}>
-      <ListItem>
-        <ListItemButton sx={{ display: "flex", justifyContent: "space-between" }}>
+      <ListItem key={parcel.id}>
+        <ListItemButton component={Link} to={'' + parcel.id} sx={{ display: "flex", justifyContent: "space-between" }}>
           <span>{parcel.number}</span>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <span>{parcel.start}</span>
@@ -29,7 +28,6 @@ export default function TrackingField(parcels) {
           <span>{parcel.time}</span>
         </ListItemButton>
       </ListItem>
-    </div>
   );
 
   return (
@@ -37,15 +35,9 @@ export default function TrackingField(parcels) {
       <Typography component="h1" variant="h3">
         Tracking
       </Typography>
-      {!detailedView ?
-        <List sx={{ width: '100%' }}>
-          {listItems}
-        </List> :
-        <div>
-          <Button variant="outlined" onClick={detailedView = false}>Back</Button>
-          {TrackingDetailsField(selectedParcel)}
-        </div>
-      }
+      <List sx={{ width: '100%' }}>
+        {listItems}
+      </List> :
     </Box>
   );
 }
