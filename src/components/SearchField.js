@@ -33,7 +33,7 @@ const modalStyle = {
 
 /* const cities = ['Congo', 'Tripoli']; */
 
-const types = ['Standard', 'Weapons', 'Animals'];
+const types = ['weapons', 'livestock', 'refrigerated', 'cautious', 'recorded', 'other'];
 
 export default function SearchField(props) {
   const [open, setOpen] = React.useState(false);

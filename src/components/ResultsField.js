@@ -31,7 +31,7 @@ export default function ResultsField(props) {
   return (
     <Box>
       <FormControl>
-        <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+        <FormLabel id="demo-row-radio-buttons-group-label">Sort by</FormLabel>
         <RadioGroup
           row
           aria-labelledby="demo-row-radio-buttons-group-label"

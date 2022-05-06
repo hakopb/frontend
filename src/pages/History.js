@@ -30,6 +30,43 @@ export default function History() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [parcels, setParcels] = useState(null);
+  const [cities, setCities] = useState([]);
+
+  const cityArray = ['Addis Abeba',
+    'Amatave',
+    'Bahr El Ghazal',
+    'Cairo',
+    'Congo',
+    'Darfur',
+    'Dakar',
+    'De Kanariske Øer',
+    'Dragebjerget',
+    'Guldkysten',
+    'Hvalbugten',
+    'Kabalo',
+    'Kap Guardafui',
+    'Kap St. Marie',
+    'Kapstaden',
+    'Luanda',
+    'Marrakesh',
+    'Mocambique',
+    'Omdurman',
+    'Sahara',
+    'Sierra Leone',
+    'Slavekysten',
+    'St. Helena',
+    'Suakin',
+    'Tanger',
+    'Timbuktu',
+    'Tripoli',
+    'Tunis',
+    'Victoriafaldene',
+    'Victoriasøen',
+    'Wadai',
+    'Zanzibar'];
+
+  const durations = [];
+
 
   useEffect(() => {
     // Simple POST request with a JSON body using fetch
@@ -38,21 +75,39 @@ export default function History() {
       headers: { 'Content-Type': 'application/json' },
     };
     fetch('https://wa-oa-dk1.azurewebsites.net/api/Shipping', requestOptions) // TODO: Update fetch url
-    .then(res => res.json())
-    .then(
-      (result) => {
-        setIsLoaded(true);
-        setParcels(result);
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    )
-  }, [])
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setParcels(result);
+          console.log(result[0].bookingLines[0].price);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+
+    fetch('https://wa-oa-dk1.azurewebsites.net/api/city', requestOptions) // TODO: Update fetch url
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setCities(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  },
+    [])
   /*
   const listItems = parcels.map((parcel) =>
     <ListItem>
@@ -69,35 +124,36 @@ export default function History() {
   );
   */
 
-  const listItems = () => {
-    if (parcels) {
-      return (parcels.map((parcel) =>
+  if (parcels) {
+    const listItems = (parcels.map((parcel, index) =>
       <ListItem>
-        <ListItemText
-          align="right"
-          primary={parcel.bookingLines.price}
-          />
+        <ListItemText primary={cityArray[parcel.booking.startPosId - 1]} />
+        <ListItemText align="left" primary={cityArray[parcel.booking.endPosId - 1]} />
+        <ListItemText align="right" primary={"$" + parcel.bookingLines[0].price} />
       </ListItem>)
-      );
-    } else {
-      return <button>Login</button>;
-    }
+    );
+
+    return (
+      <Box sx={{ flexGrow: 1, justifyContent: "center" }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div" align="center">
+              History
+            </Typography>
+            <Demo>
+              <List dense={dense}>
+                {listItems}
+              </List>
+            </Demo>
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  }
+  else {
+    return (<p>Loading...</p>)
   }
 
-  return (
-    <Box sx={{ flexGrow: 1, justifyContent: "center" }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div" align="center">
-            History
-          </Typography>
-          <Demo>
-            <List dense={dense}>
-              {listItems}
-            </List>
-          </Demo>
-        </Grid>
-      </Grid>
-    </Box>
-  );
+
+
 }
