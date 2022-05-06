@@ -41,6 +41,8 @@ export default function Booking() {
   /* Fetching */
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error2, setError2] = useState(null);
+  const [isLoaded2, setIsLoaded2] = useState(false);
   const [cities, setCities] = useState([]);
   const [fromCity, setFromCity] = useState(null);
   const [toCity, setToCity] = useState(null);
@@ -66,25 +68,39 @@ export default function Booking() {
     }
   }
 
+  // TODO: Remove this and make it dynamic
+  const jsonData = {
+    "source": "Dragebjerget",
+    "destination": "Kap Guardafui",
+    "height": 0,
+    "width": 0,
+    "length": 0,
+    "weight": 0,
+    "category": "weapon"
+  }
+
   useEffect(() => {
     if (skipCount) setSkipCount(false);
     if (!skipCount) {
       // Simple POST request with a JSON body using fetch
       const requestOptions = {
-        method: 'GET',
-        /*headers: { 'Content-Type': 'application/json' },*/
+        method: 'POST',
+        headers: {
+          'accept': 'text/plain',
+          'Content-Type': 'application/json',
+          'body': JSON.stringify(jsonData) },
       };
-      fetch('https://reqres.in/api/users?page=2', requestOptions) // TODO: Update fetch url
+      fetch('https://wa-oa-dk1.azurewebsites.net/api/Routes', requestOptions) // TODO: Update fetch url
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
+          setIsLoaded2(true);
           setResults(result.data);
           console.log(result.data);
         },
         (error) => {
-          setIsLoaded(true);
-          setError(error);
+          setIsLoaded2(true);
+          setError2(error);
         }
       )
     }
