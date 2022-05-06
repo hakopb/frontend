@@ -10,7 +10,7 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
-export default function CustomerInfoField(from, to, weight, time) {
+export default function CustomerInfoField(route, category, from, to, weight, time, price, length, width, height) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
